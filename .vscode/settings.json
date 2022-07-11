@@ -10,6 +10,12 @@
         "settings": {
           "foreground": "#61AFEF"
         }
+      },
+      {
+        "scope": "variable.other.readwrite.alias.js.jsx",
+        "settings": {
+          "foreground": "#8482D1"
+        }
       }
     ]
   }

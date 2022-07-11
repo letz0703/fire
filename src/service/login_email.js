@@ -1,19 +1,30 @@
 // import logo from './logo.svg';
-import React, {useEffect, useState} from 'react';
-import {createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut} from 'firebase/auth';
-import {auth} from './firebase';
+import React, { useEffect, useState } from "react";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
+import { auth } from "./firebase";
+import useFirebase from "./useFirebase";
 
 function LoginEmail() {
-  const [registerEmail, setRegisterEmail] = useState('');
-  const [registerPassword, setRegisterPassword] = useState('');
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
+  const { handleSignIn, name } = useFirebase();
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
   const [user, setUser] = useState({});
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const register = async () => {
     try {
-      const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        registerEmail,
+        registerPassword
+      );
       console.log(user);
     } catch (error) {
       setError(error.message);
@@ -22,7 +33,11 @@ function LoginEmail() {
   };
   const login = async () => {
     try {
-      const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      const user = await signInWithEmailAndPassword(
+        auth,
+        loginEmail,
+        loginPassword
+      );
       console.log(user);
     } catch (error) {
       setError(error.message);
@@ -41,26 +56,56 @@ function LoginEmail() {
   }, []);
 
   return (
-    <div className='App'>
+    <div className="App">
       <header>
         <h1>Login</h1>
-        <input type='text' className='ba b--dark-red bw2' placeholder='email...' onChange={(e) => setLoginEmail(e.target.value)} required />
+        <input
+          type="text"
+          className="ba b--dark-red bw2"
+          placeholder="email..."
+          onChange={(e) => setLoginEmail(e.target.value)}
+          required
+        />
         <br />
         <br />
-        <input type='text' className='ba b--dark-red bw2' placeholder='password...' onChange={(e) => setLoginPassword(e.target.value)} />
+        <input
+          type="text"
+          className="ba b--dark-red bw2"
+          placeholder="password..."
+          onChange={(e) => setLoginPassword(e.target.value)}
+        />
         <br />
-        <a className='mv3 f6 link dim ba bw2 ph3 pv2 mb2 dib dark-blue' onClick={login}>
+        <a
+          className="mv3 f6 link dim ba bw2 ph3 pv2 mb2 dib dark-blue"
+          onClick={login}
+        >
           Login
+        </a>
+        <a type="button" onClick={handleSignIn}>
+          <h1>Google Login</h1>
         </a>
         {error.length !== 0 && (
           <div>
             <p>가입해 주세요</p> <h1>Register</h1>
-            <input type='text' className='ba b--dark-red bw2' placeholder='email' onChange={(e) => setRegisterEmail(e.target.value)} />
+            <input
+              type="text"
+              className="ba b--dark-red bw2"
+              placeholder="email"
+              onChange={(e) => setRegisterEmail(e.target.value)}
+            />
             <br />
             <br />
-            <input type='text' className='ba b--dark-red bw2' placeholder='password' onChange={(e) => setRegisterPassword(e.target.value)} />
+            <input
+              type="text"
+              className="ba b--dark-red bw2"
+              placeholder="password"
+              onChange={(e) => setRegisterPassword(e.target.value)}
+            />
             <br />
-            <a className='mv3 f6 link dim ba bw2 ph3 pv2 mb2 dib dark-red' onClick={register}>
+            <a
+              className="mv3 f6 link dim ba bw2 ph3 pv2 mb2 dib dark-red"
+              onClick={register}
+            >
               Regiter
             </a>
           </div>
@@ -68,14 +113,21 @@ function LoginEmail() {
 
         {user?.email && (
           <div>
-            <p>{user.email}</p>이메일 주소로 입장 하셨습니다. 계속 하시려면 다음 링크를 눌러주세요.
-            <a href='https://especialist.org/icanmart'>i.CANMART 입장</a>
+            <p>{user.email}</p>이메일 주소로 입장 하셨습니다. 계속 하시려면 다음
+            링크를 눌러주세요.
+            <a href="https://especialist.org/icanmart">i.CANMART 입장</a>
             <br />
-            <button className='f6 link dim ba bw2 ph3 pv2 mb2 dib dark-pink' type='text' placeholder='logout' onClick={logout}>
+            <button
+              className="f6 link dim ba bw2 ph3 pv2 mb2 dib dark-pink"
+              type="text"
+              placeholder="logout"
+              onClick={logout}
+            >
               Log out
             </button>
           </div>
         )}
+        {name}
       </header>
     </div>
   );
