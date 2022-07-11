@@ -1,3 +1,6 @@
 {
-  "workbench.colorTheme": "One Monokai"
+  "workbench.colorTheme": "One Monokai",
+  "workbench.colorCustomizations": {
+    "tab.activeBackground": "#0072ee7f"
+  }
 }
