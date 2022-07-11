@@ -1,20 +1,20 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
-//import styles from './home.module.css'
+import styles from './home.module.css';
 
 const Home = (props) => {
   const navigate = useNavigate();
   return (
-    <>
-      <h1> Home</h1>
-      <button
+    <div className={styles.page}>
+      <a
+        type='button'
         onClick={() => {
           navigate('/google');
         }}
       >
-        go to google login
-      </button>
-    </>
+        google login
+      </a>
+    </div>
   );
 };
 

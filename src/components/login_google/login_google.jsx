@@ -2,8 +2,8 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import styles from './login_google.module.css';
 import {getAuth, getRedirectResult, GoogleAuthProvider} from 'firebase/auth';
-// import {LoginGoogle} from '../../service/google';
-// import GoogleLogin from './service/google';
+import GLogin from '../../service/google';
+
 export default function LoginGoogle() {
   const auth = getAuth();
   getRedirectResult(auth)
@@ -20,17 +20,10 @@ export default function LoginGoogle() {
       const credential = error.credential;
     });
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   return (
     <div>
-      <h1>Login Google</h1>
-      <button
-        onClick={() => {
-          navigate('/');
-        }}
-      >
-        Go to Home
-      </button>
+      <GLogin />
     </div>
   );
 }

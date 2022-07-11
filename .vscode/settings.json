@@ -2,5 +2,15 @@
   "workbench.colorTheme": "One Monokai",
   "workbench.colorCustomizations": {
     "tab.activeBackground": "#0072ee7f"
+  },
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "variable.other.readwrite.js",
+        "settings": {
+          "foreground": "#61AFEF"
+        }
+      }
+    ]
   }
 }

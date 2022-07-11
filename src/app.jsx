@@ -8,30 +8,21 @@ import LoginEmail from './service/login_email';
 
 function App() {
   return (
-    <div>
-      <h1>
-        Hello World
-        <button
-          onClick={() => {
-            Navigate('/google');
-          }}
-        >
-          Login Google
-        </button>
-        <BrowserRouter>
-          <nav>
-            <Link to='/'>Home</Link>
-            <Link to='/google'>Google</Link>
-          </nav>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/home' element={<Home />} />
-            <Route path='/google' element={<LoginGoogle />} />
-          </Routes>
-        </BrowserRouter>
-      </h1>
+    <div className='pages'>
+      <BrowserRouter>
+        <LoginEmail />
+        {/* <nav>
+          <Link to='/google' className='link'>
+            Google
+          </Link>
+        </nav> */}
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/home' element={<Home />} />
+          <Route path='/google' element={<LoginGoogle />} />
+        </Routes>
+      </BrowserRouter>
 
-      <LoginEmail />
       {/* <GoogleLogin /> */}
     </div>
   );
