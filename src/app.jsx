@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import React, {useEffect, useState} from 'react';
 import './app.css';
-import {createUserWithEmailAndPassword} from 'firebase/auth';
+import {createUserWithEmailAndPassword, onAuthStateChanged} from 'firebase/auth';
 import {authFire} from './service/firebase';
 import {auth} from './service/firebase';
 
@@ -19,6 +19,12 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+  }, []);
+
   return (
     <div className='App'>
       <header>
@@ -31,6 +37,7 @@ function App() {
         <a className='mv3 f6 link dim ba bw1 ph3 pv2 mb2 dib dark-red' onClick={register}>
           Register
         </a>
+        {user?.email && <p>{user.email}</p>}
       </header>
     </div>
   );
