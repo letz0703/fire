@@ -75,15 +75,18 @@ function LoginEmail() {
           onChange={(e) => setLoginPassword(e.target.value)}
         />
         <br />
-        <a
-          className="mv3 f6 link dim ba bw2 ph3 pv2 mb2 dib dark-blue"
-          onClick={login}
-        >
-          Login
-        </a>
-        <a type="button" onClick={handleSignIn}>
-          <h1>Google Login</h1>
-        </a>
+        <div>
+          <a
+            className="mv3 f6 link dim ba bw2 ph3 pv2 mb2 dib dark-blue"
+            onClick={login}
+          >
+            Login
+          </a>
+          <a type="button" onClick={handleSignIn}>
+            <span className="bg-slate-800 white rounded-lg f2">G</span>
+            <span className="silver">oogle</span>
+          </a>
+        </div>
         {error.length !== 0 && (
           <div>
             <p>가입해 주세요</p> <h1>Register</h1>
